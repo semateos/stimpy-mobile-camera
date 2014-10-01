@@ -14,5 +14,6 @@ tmp/log*
 npm-debug.log
 node_modules
 bower_components
-static/*
+cordova/www/*
+cordova/platforms/ios/www/*
 .DS_Store

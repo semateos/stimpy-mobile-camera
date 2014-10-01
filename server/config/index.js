@@ -25,7 +25,7 @@ var config = {
 }
 
 switch(process.env.NODE_ENV){
-
+    
     case 'production':
     case 'cordova':
 
