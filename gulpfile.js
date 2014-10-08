@@ -54,12 +54,14 @@ gulp.task('default', function(){
 });
 
 gulp.task('cordova', function(){
-
+    
     gulp.src('./public/**').pipe(gulp.dest('./cordova/www'));
 
+    var plugins = require('./server/config/plugins');
+
     var server = Hapi.createServer(config.host, config.port, config.hapi.options);
-        
-    server.pack.register([{ plugin: require("./index") }], function(err) {
+    
+    server.pack.register(plugins.concat([{ plugin: require("./index") }]), function(err) {
 
         var options = {
             method: "GET",
