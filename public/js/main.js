@@ -6,21 +6,22 @@ $(document).ready(function(){
 
     $('.bg img').fullscreener();
 
-    $.getJSON(window.api + "/api/button/count", function( data ) {
+    function onSuccess(imageData) {
+        var image = document.getElementById('photo');
+        image.src = "data:image/jpeg;base64," + imageData;
+    }
 
-    	$('.text h1').html(data.clicks);
-
-    });
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
 
     $('.text button').on('touchstart click', function(e){
 
         e.stopPropagation(); e.preventDefault();
         
-    	$.getJSON(window.api + "/api/button/add", function( data ) {
-
-	    	$('.text h1').html(data.clicks);
-
-	    });
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL
+        });
     })
 
 });
